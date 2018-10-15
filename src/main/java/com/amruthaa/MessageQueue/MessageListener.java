@@ -2,7 +2,7 @@ package com.amruthaa.MessageQueue;
 
 import com.amruthaa.ApplicationConstant;
 import com.amruthaa.configuration.ApplicationConfigReader;
-import com.amruthaa.models.UserDetails;
+import com.amruthaa.models.UserInput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
@@ -22,15 +22,22 @@ public class MessageListener {
     ApplicationConfigReader applicationConfigReader;
     /**
      * Message listener for input queue
-     * @param UserDetails a user defined object used for deserialization of message
+     * @param UserInput a user defined object used for deserialization of message
      */
     @RabbitListener(queues = "${app1.queue.name}")
-    public void receiveMessageFromInputQueue(final UserDetails data) {
-        log.info("Received message: {} from app1 queue.", data);
+    public void receiveMessageFromInputQueue(final UserInput data) {
+        log.info("Received message: {} from Input queue.", data);
         try {
-            log.info("Making REST call to the API");
-            //TODO: Code to make REST call
+            log.info("Making REST call to the respective Machine learning API(based on the model)");
+            //TODO: Code to make REST call to machine learning API
+
             log.info("<< Exiting receiveMessageForApp1() after API call.");
+            log.info("<< Output accuracy to output message queue...");
+
+            // TODO: publish to output message queue
+
+
+
         } catch(HttpClientErrorException  ex) {
             if(ex.getStatusCode() == HttpStatus.NOT_FOUND) {
                 log.info("Delay...");
@@ -55,7 +62,7 @@ public class MessageListener {
      */
     @RabbitListener(queues = "${app2.queue.name}")
     public void receiveMessageFromOutputQueue(String reqObj) {
-        log.info("Received message: {} from app2 queue.", reqObj);
+        log.info("Received message: {} from Output queue.", reqObj);
         try {
             log.info("Making REST call to the API");
             //TODO: Send a email to user
