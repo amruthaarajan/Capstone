@@ -3,6 +3,7 @@ package com.amruthaa;
 
 import com.amruthaa.configuration.ApplicationConfigReader;
 import lombok.Data;
+import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -29,7 +32,6 @@ public class Application extends SpringBootServletInitializer implements RabbitL
 
     @Autowired
     private ApplicationConfigReader applicationConfig;
-
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -106,6 +108,24 @@ public class Application extends SpringBootServletInitializer implements RabbitL
         DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
         factory.setMessageConverter(consumerJackson2MessageConverter());
         return factory;
+    }
+
+    //Tomcat large file upload connection reset
+    @Bean
+    public TomcatServletWebServerFactory tomcatEmbedded() {
+
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+
+        tomcat.addConnectorCustomizers((TomcatConnectorCustomizer) connector -> {
+            if ((connector.getProtocolHandler() instanceof AbstractHttp11Protocol<?>)) {
+                int maxUploadSizeInMb = getApplicationConfig().getUploadFileMaxSize();
+                //-1 means unlimited
+                ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setMaxSwallowSize(maxUploadSizeInMb);
+            }
+        });
+
+        return tomcat;
+
     }
 
     @Override

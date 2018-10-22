@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>Machine Learning as Service</h1>
+
+<form method="POST" action="/upload" enctype="multipart/form-data">
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required /><br/><br/>
+
+    <label for="file"><b>Upload data set(only .csv files)</b></label>
+    <input type="file" name="file" accept=".csv" required /><br/><br/>
+
+    <label for="model"><b>Select a model to run</b></label>
+    <select name="model">
+        <option value="linearRegression">Linear Regression</option>
+        <option value="randomForest">Random Forest</option>
+    </select>
+    <br><br>
+
+    <input type="submit" value="Next >>" />
+</form>
+
+</body>
+</html>
