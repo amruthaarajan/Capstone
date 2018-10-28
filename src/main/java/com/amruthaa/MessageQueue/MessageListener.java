@@ -1,8 +1,10 @@
 package com.amruthaa.MessageQueue;
 
 import com.amruthaa.ApplicationConstant;
+import com.amruthaa.MailSenderService;
+import com.amruthaa.MlApiRunner;
 import com.amruthaa.configuration.ApplicationConfigReader;
-import com.amruthaa.models.Result;
+import com.amruthaa.models.SimpleMail;
 import com.amruthaa.models.UserInput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import javax.mail.internet.MimeMessage;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Message Listener for RabbitMQ
@@ -35,24 +45,34 @@ public class MessageListener {
     ApplicationConfigReader applicationConfigReader;
 
     @Autowired
-    private JavaMailSender emailSender;
-
+    private MailSenderService senderService;
 
     /**
      * Message listener for input queue
-     * @param UserInput a user defined object used for deserialization of message
+     * @param data a user defined object used for deserialization of message
      */
     @RabbitListener(queues = "${app1.queue.name}")
     public void receiveMessageFromInputQueue(final UserInput data) {
         log.info("Received message: {} from Input queue.", data);
         try {
             log.info("Making REST call to the respective Machine learning API(based on the model)");
-            //TODO: Code to make REST call to machine learning API
+            String apiOut="";
+            switch(data.getModel())
+            {
+                case "SentimentalAnalysis":
+                    apiOut = MlApiRunner.sentimentalAnalysisApi(applicationConfigReader.getApi1Url(),data);
+                    break;
+
+                default:
+                    apiOut = "Either data is incorrect or api call feature collection is invalid";
+                    break;
+            }
 
             log.info("<< Exiting receiveMessageForApp1() after API call.");
             log.info("<< Output accuracy to output message queue...");
 
-            // TODO: publish to output message queue
+            data.setResult(apiOut);
+
             String exchange = applicationConfigReader.getApp2Exchange();
             String routingKey = applicationConfigReader.getApp2RoutingKey();
 
@@ -76,6 +96,8 @@ public class MessageListener {
         }
     }
 
+
+
     /**
      * Message listener for Output queue
      *
@@ -85,13 +107,14 @@ public class MessageListener {
         log.info("Received message: {} from Output queue.", data);
         try {
             log.info("Sending an email to user");
-            //TODO: Send a email to user
-            MimeMessage emailMessage = emailSender.createMimeMessage();
-            MimeMessageHelper emailHelper = new MimeMessageHelper(emailMessage);
-            emailHelper.setTo(data.getEmail());
-            Result outputEmailText=new Result(data.getModel(),"89.5","23minutes");
-            emailHelper.setText("Here are the results: " + outputEmailText);
-            emailSender.send(emailMessage);
+//            MimeMessage emailMessage = emailSender.createMimeMessage();
+//            MimeMessageHelper emailHelper = new MimeMessageHelper(emailMessage);
+//            emailHelper.setTo(data.getEmail());
+//            emailHelper.setText("Here are the results: " + data.getResult());
+//            emailSender.send(emailMessage);
+            // send a simple mail
+            String subject = "Ticket Id#" + data.getTicketId() + "- Model run completed. Open to view result";
+            senderService.sendSimpleMail(new SimpleMail(data.getEmail(),subject,data.getResult()));
 
             log.info("<< Exiting receiveMessageCrawlCI() after sending an email.");
         } catch(HttpClientErrorException  ex) {

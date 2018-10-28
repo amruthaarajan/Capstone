@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
+<header>
+    <h2>Machine learning as Service</h2>
+</header>
 
-<h1>Machine Learning as Service</h1>
+<section>
+    <article>
+        <h1>Enter details</h1>
+        <div class="container">
+            <form class="myForm" method="POST" action="/upload" enctype="multipart/form-data">
+                <p>
+                    <label for="email">Email
+                        <input type="email" placeholder="Enter Email.." name="email" required />
+                    </label>
+                </p>
 
-<form method="POST" action="/upload" enctype="multipart/form-data">
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required /><br/><br/>
+                <p>
+                    <label for="file">Upload data(only .txt for sentiment analysis and .csv for other models)
+                        <input type="file" name="file" accept=".csv,.txt" required />
+                    </label>
+                </p>
 
-    <label for="file"><b>Upload data set(only .csv files)</b></label>
-    <input type="file" name="file" accept=".csv" required /><br/><br/>
+                <p>
+                    <label for="model">Select a model to run
+                        <select name="model">
+                            <option value="SentimentalAnalysis">Sentimental Analysis</option>
+                            <option value="linearRegression">Linear Regression</option>
+                            <option value="randomForest">Random Forest</option>
+                        </select>
+                    </label>
+                </p>
 
-    <label for="model"><b>Select a model to run</b></label>
-    <select name="model">
-        <option value="linearRegression">Linear Regression</option>
-        <option value="randomForest">Random Forest</option>
-    </select>
-    <br><br>
+                <p>
+                    <input type="submit" value="Next >>" />
+                </p>
+            </form>
+        </div>
+    </article>
+</section>
 
-    <input type="submit" value="Next >>" />
-</form>
-
+<footer>
+    <p>By Amruthaa Rajan</p>
+</footer>
 </body>
 </html>

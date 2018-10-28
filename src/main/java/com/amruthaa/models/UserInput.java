@@ -14,7 +14,7 @@ public final class UserInput implements Serializable{
     private String email;
 
     @JsonProperty("ticketId")
-    private String ticketId;
+    private int ticketId;
 
     @JsonProperty("model")
     private String model;
@@ -22,7 +22,9 @@ public final class UserInput implements Serializable{
     @JsonProperty("dataUrl")
     private String dataUrl;
 
-    public UserInput(String email, String ticketId, String model, String dataUrl) {
+    private String result;
+
+    public UserInput(String email, int ticketId, String model, String dataUrl) {
         this.email = email;
         this.ticketId = ticketId;
         this.model= model;

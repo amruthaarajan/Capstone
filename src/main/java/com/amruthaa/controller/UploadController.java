@@ -1,8 +1,11 @@
 package com.amruthaa.controller;
 
 import com.amruthaa.MessageQueue.MessageSender;
+import com.amruthaa.TicketIdGenerator;
 import com.amruthaa.configuration.ApplicationConfigReader;
 import com.amruthaa.models.UserInput;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -13,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -44,25 +48,31 @@ public class UploadController {
     public String index() { return "upload"; }
 
     @PostMapping("/upload") // //new annotation since 4.3
-    public String singleFileUpload(@RequestParam("file") MultipartFile file,
+    public String singleFileUpload(@RequestParam("model") String model, @RequestParam("email") String email, @RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
+        return doAnalysis(model,email,file,redirectAttributes);
+    }
 
-        if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-            return "redirect:uploadStatus";
-        }
+    @GetMapping("/uploadStatus")
+    public String uploadStatus() {
+        return "uploadStatus";
+    }
 
+    private String doAnalysis(String model, String email,MultipartFile file, RedirectAttributes redirectAttributes)
+    {
         try {
 
+            int ticketId = TicketIdGenerator.generate();
             // Get the file and save it in upload folder
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(applicationConfig.getUploadFolder() + file.getOriginalFilename());
+            Path path = Paths.get(applicationConfig.getUploadFolder() + ticketId + "/" + file.getOriginalFilename());
+            Files.createDirectories(path.getParent());
             Files.write(path, bytes);
 
             /* Sending to Message Queue */
             String exchange = applicationConfig.getApp1Exchange();
             String routingKey = applicationConfig.getApp1RoutingKey();
-            UserInput inputMessage=new UserInput("1","543543653","Random Forest","https://aws.amazon.com/435324232r453fdd");
+            UserInput inputMessage=new UserInput(email, ticketId,model,path.toString());
             messageSender.sendMessage(rabbitTemplate, exchange, routingKey, inputMessage);
 
             redirectAttributes.addFlashAttribute("message",
@@ -78,10 +88,4 @@ public class UploadController {
 
         return "redirect:/uploadStatus";
     }
-
-    @GetMapping("/uploadStatus")
-    public String uploadStatus() {
-        return "uploadStatus";
-    }
-
 }
