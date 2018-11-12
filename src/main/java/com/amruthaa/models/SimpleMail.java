@@ -10,10 +10,10 @@ public class SimpleMail {
     private String content;
     private String attachment;
 
-    public SimpleMail(String to,String subject, String attachment) {
+    public SimpleMail(String to,String subject, String content, String attachment) {
         this.to = to;
         this.subject = subject;
-        this.content = "Your results are ready to be viewed. Please find the results attached with this email.";
+        this.content = content;
         this.attachment = attachment;
     }
 }

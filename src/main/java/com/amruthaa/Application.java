@@ -49,40 +49,40 @@ public class Application extends SpringBootServletInitializer implements RabbitL
     }
 
 
-    /* Creating a bean for the Message queue Exchange */
+    /* Creating a bean for the Input Message queue Exchange */
     @Bean
-    public TopicExchange getApp1Exchange() {
-        return new TopicExchange(getApplicationConfig().getApp1Exchange());
+    public TopicExchange getInputQueueExchange() {
+        return new TopicExchange(getApplicationConfig().getInputQueueExchange());
+    }
+
+    /* Creating a bean for the Input Message queue */
+    @Bean
+    public Queue getInputQueueName() {
+        return new Queue(getApplicationConfig().getInputQueueName());
+    }
+
+    /* Binding between Input Exchange and Queue using routing key */
+    @Bean
+    public Binding declareBindingInputQueue() {
+        return BindingBuilder.bind(getInputQueueName()).to(getInputQueueExchange()).with(getApplicationConfig().getInputQueueKey());
+    }
+
+    /* Creating a bean for the Output Message queue Exchange */
+    @Bean
+    public TopicExchange getOutputQueueExchange() {
+        return new TopicExchange(getApplicationConfig().getOutputQueueExchange());
     }
 
     /* Creating a bean for the Message queue */
     @Bean
-    public Queue getApp1Queue() {
-        return new Queue(getApplicationConfig().getApp1Queue());
+    public Queue getOutputQueueName() {
+        return new Queue(getApplicationConfig().getOutputQueueName());
     }
 
-    /* Binding between Exchange and Queue using routing key */
+    /* Binding between Output Exchange and Queue using routing key */
     @Bean
-    public Binding declareBindingApp1() {
-        return BindingBuilder.bind(getApp1Queue()).to(getApp1Exchange()).with(getApplicationConfig().getApp1RoutingKey());
-    }
-
-    /* Creating a bean for the Message queue Exchange */
-    @Bean
-    public TopicExchange getApp2Exchange() {
-        return new TopicExchange(getApplicationConfig().getApp2Exchange());
-    }
-
-    /* Creating a bean for the Message queue */
-    @Bean
-    public Queue getApp2Queue() {
-        return new Queue(getApplicationConfig().getApp2Queue());
-    }
-
-    /* Binding between Exchange and Queue using routing key */
-    @Bean
-    public Binding declareBindingApp2() {
-        return BindingBuilder.bind(getApp2Queue()).to(getApp2Exchange()).with(getApplicationConfig().getApp2RoutingKey());
+    public Binding declareBindingOutputQueue() {
+        return BindingBuilder.bind(getOutputQueueName()).to(getOutputQueueExchange()).with(getApplicationConfig().getOutputQueueKey());
     }
 
     /* Bean for rabbitTemplate */

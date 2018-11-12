@@ -70,13 +70,13 @@ public class UploadController {
             Files.write(path, bytes);
 
             /* Sending to Message Queue */
-            String exchange = applicationConfig.getApp1Exchange();
-            String routingKey = applicationConfig.getApp1RoutingKey();
+            String exchange = applicationConfig.getInputQueueExchange();
+            String routingKey = applicationConfig.getInputQueueKey();
             UserInput inputMessage=new UserInput(email, ticketId,model,path.toString());
             messageSender.sendMessage(rabbitTemplate, exchange, routingKey, inputMessage);
 
             redirectAttributes.addFlashAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+                    "Thanks for using the service. You successfully uploaded '" + file.getOriginalFilename() + "' and initiated a run. Your results will be sent to '" + email + "' when completed.");
 
         }
         catch (IOException e) {

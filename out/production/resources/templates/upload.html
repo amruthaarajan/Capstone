@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="../../css/styles.css" />
 </head>
 <body>
 <header>
-    <h2>Machine learning as Service</h2>
+    <h2>ML based SOA</h2>
 </header>
 
 <section>
@@ -20,8 +20,8 @@
                 </p>
 
                 <p>
-                    <label for="file">Upload data(only .txt for sentiment analysis and .csv for other models)
-                        <input type="file" name="file" accept=".csv,.txt" required />
+                    <label for="file">Upload data(text file for sentiment analysis and image file for image processing)
+                        <input type="file" name="file" accept=".png,.txt,.jpeg" required />
                     </label>
                 </p>
 
@@ -29,14 +29,13 @@
                     <label for="model">Select a model to run
                         <select name="model">
                             <option value="SentimentalAnalysis">Sentimental Analysis</option>
-                            <option value="linearRegression">Linear Regression</option>
-                            <option value="randomForest">Random Forest</option>
+                            <option value="ImageClassification">Image Classification</option>
                         </select>
                     </label>
                 </p>
 
                 <p>
-                    <input type="submit" value="Next >>" />
+                    <input type="submit" value="Run Model" />
                 </p>
             </form>
         </div>

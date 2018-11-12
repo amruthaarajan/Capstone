@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <style>
+       * { box-sizing: border-box; }
+       body {font-family: Arial, Helvetica, sans-serif;}
+       /* Style the header */
+       header { background-color: #666; padding: 30px; text-align: center; font-size: 35px; color: white; }
+       /* Container for flexboxes */
+       section { display: -webkit-flex; display: flex; }
+       /* Style the content */
+       article { -webkit-flex: 3; -ms-flex: 3; flex: 3; background-color: #f1f1f1; padding: 10px; }
+       /* Style the footer */
+       footer { background-color: #777; padding: 10px; text-align: center; color: white; }
+       /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+       @media (max-width: 600px) {  section { -webkit-flex-direction: column; flex-direction: column; }  }
+   </style>
+</head>
+<body>
+<header>
+    <h2>ML based SOA</h2>
+</header>
+
+<section>
+    <article>
+        <div th:if="${header}">
+            <h2 th:text="${header}"/>
+        </div>
+        <div th:if="${content}">
+            <h2 th:text="${content}"/>
+        </div>
+        <div th:if="${footer}">
+            <h2 th:text="${footer}"/>
+        </div>
+    </article>
+</section>
+
+<footer>
+    <p>By Amruthaa Rajan</p>
+</footer>
+</body>
+</html>

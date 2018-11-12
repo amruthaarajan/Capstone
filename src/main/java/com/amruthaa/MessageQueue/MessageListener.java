@@ -12,21 +12,9 @@ import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
-
-import javax.mail.internet.MimeMessage;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 /**
  * Message Listener for RabbitMQ
@@ -47,11 +35,12 @@ public class MessageListener {
     @Autowired
     private MailSenderService senderService;
 
+
     /**
      * Message listener for input queue
      * @param data a user defined object used for deserialization of message
      */
-    @RabbitListener(queues = "${app1.queue.name}")
+    @RabbitListener(queues = "${inputqueue.queue.name}")
     public void receiveMessageFromInputQueue(final UserInput data) {
         log.info("Received message: {} from Input queue.", data);
         try {
@@ -61,6 +50,9 @@ public class MessageListener {
             {
                 case "SentimentalAnalysis":
                     apiOut = MlApiRunner.sentimentalAnalysisApi(applicationConfigReader.getApi1Url(),data);
+                    break;
+                case "ImageClassification":
+                    apiOut = MlApiRunner.imageClassificationApi(applicationConfigReader.getApi2Url(),data);
                     break;
 
                 default:
@@ -73,8 +65,8 @@ public class MessageListener {
 
             data.setResult(apiOut);
 
-            String exchange = applicationConfigReader.getApp2Exchange();
-            String routingKey = applicationConfigReader.getApp2RoutingKey();
+            String exchange = applicationConfigReader.getOutputQueueExchange();
+            String routingKey = applicationConfigReader.getOutputQueueKey();
 
             messageSender.sendMessage(rabbitTemplate, exchange, routingKey, data);
 
@@ -102,19 +94,18 @@ public class MessageListener {
      * Message listener for Output queue
      *
      */
-    @RabbitListener(queues = "${app2.queue.name}")
+    @RabbitListener(queues = "${outputqueue.queue.name}")
     public void receiveMessageFromOutputQueue(final UserInput data) {
         log.info("Received message: {} from Output queue.", data);
         try {
             log.info("Sending an email to user");
-//            MimeMessage emailMessage = emailSender.createMimeMessage();
-//            MimeMessageHelper emailHelper = new MimeMessageHelper(emailMessage);
-//            emailHelper.setTo(data.getEmail());
-//            emailHelper.setText("Here are the results: " + data.getResult());
-//            emailSender.send(emailMessage);
             // send a simple mail
-            String subject = "Ticket Id#" + data.getTicketId() + "- Model run completed. Open to view result";
-            senderService.sendSimpleMail(new SimpleMail(data.getEmail(),subject,data.getResult()));
+            String subject = "Ticket Id#" + data.getTicketId() + "- ML based SOA run completed!";
+
+            // content should have three keys. one of the key will be image base64 format. pass that to content which can then be displayed in image
+            // https://www.thymeleaf.org/doc/articles/springmail.html
+            String content = data.getResult();
+            senderService.sendSimpleMail(new SimpleMail(data.getEmail(),subject,content,data.getResult()));
 
             log.info("<< Exiting receiveMessageCrawlCI() after sending an email.");
         } catch(HttpClientErrorException  ex) {
