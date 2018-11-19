@@ -3,9 +3,7 @@ package com.amruthaa;
 import com.amruthaa.models.UserInput;
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -55,18 +53,23 @@ public final class MlApiRunner {
         wr.writeBytes(gson.toJson(data));
         wr.flush();
         wr.close();
-        int responseCode = con.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + url.toString());
+        int responseCode = con.getResponseCode();
         System.out.println("Response Code : " + responseCode);
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response;
-        response = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+        InputStream inputStream = con.getInputStream();
+        String[] temp = data.getDataUrl().split("\\.");
+        String saveFilePath = temp[0] + "_completed." + temp[1];
+        // opens an output stream to save into file
+        FileOutputStream outputStream = new FileOutputStream(saveFilePath);
+
+        int bytesRead = -1;
+        byte[] buffer = new byte[4096];
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
         }
-        in.close();
-        return response.toString();
+
+        outputStream.close();
+        inputStream.close();
+        return saveFilePath;
     }
 }
