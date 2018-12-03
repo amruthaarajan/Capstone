@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="../../css/styles.css" />
+</head>
+<body>
+<header>
+    <h2>SOA based Machine Learning</h2>
+</header>
+
+<section>
+    <article>
+        <div th:if="${message}">
+            <h2 th:text="${message}"/>
+        </div>
+    </article>
+</section>
+
+<footer>
+    <p>By Amruthaa Rajan</p>
+</footer>
+</body>
+</html>

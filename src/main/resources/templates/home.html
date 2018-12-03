@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="../../css/styles.css" />
+    <script type="text/javascript">
+        var changeFileTypes = function (elem)
+        {
+            fileTypes = '.txt';
+            if(elem.value === 'ImageClassification'){
+                fileTypes = '.jpeg,.jpg,.png';
+            } else if(elem.value  === 'LinearRegression'){
+                fileTypes = '.csv';
+            }
+            else
+            {
+                fileTypes = '.txt';
+            }
+            document.getElementsByName("file")[0].setAttribute("accept", fileTypes);
+        };
+    </script>
+</head>
+<body>
+<header>
+    <h2>SOA based Machine Learning</h2>
+</header>
+
+<section>
+    <article>
+        <h1>Enter details</h1>
+        <div class="container">
+            <form class="myForm" method="POST" action="/home" enctype="multipart/form-data">
+                <p>
+                    <label for="email">Email
+                        <input type="email" placeholder="Enter Email.." name="email" required />
+                    </label>
+                </p>
+
+                <p>
+                    <label for="model">Select a model to run
+                        <select name="model" onchange="changeFileTypes(this)">
+                            <option value="SentimentalAnalysis">Sentimental Analysis</option>
+                            <option value="ImageClassification">Image Classification</option>
+                            <option value="LinearRegression">Linear Regression</option>
+                        </select>
+                    </label>
+                </p>
+
+                <p>
+                    <label for="file">Upload data(text file for sentiment analysis and image file for image processing)
+                        <input type="file" name="file" accept=".txt" required/>
+                    </label>
+                </p>
+
+                <p>
+                    <input type="submit" value="Run Model" />
+                </p>
+            </form>
+        </div>
+    </article>
+</section>
+
+<footer>
+    <p>By Amruthaa Rajan</p>
+</footer>
+</body>
+</html>
