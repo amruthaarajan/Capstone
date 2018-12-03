@@ -1,8 +1,8 @@
 package com.amruthaa.MessageQueue;
 
+import com.amruthaa.ApiRunner;
 import com.amruthaa.ApplicationConstant;
 import com.amruthaa.MailSenderService;
-import com.amruthaa.MlApiRunner;
 import com.amruthaa.configuration.ApplicationConfigReader;
 import com.amruthaa.models.SimpleMail;
 import com.amruthaa.models.UserInput;
@@ -49,12 +49,14 @@ public class MessageListener {
             switch(data.getModel())
             {
                 case "SentimentalAnalysis":
-                    apiOut = MlApiRunner.sentimentalAnalysisApi(applicationConfigReader.getApi1Url(),data);
+                    apiOut = ApiRunner.sentimentalAnalysisApi(applicationConfigReader.getApi1Url(),data);
                     break;
                 case "ImageClassification":
-                    apiOut = MlApiRunner.imageClassificationApi(applicationConfigReader.getApi2Url(),data);
+                    apiOut = ApiRunner.imageClassificationLinearRegressionApi(applicationConfigReader.getApi2Url(),data);
                     break;
-
+                case "LinearRegression":
+                    apiOut = ApiRunner.imageClassificationLinearRegressionApi(applicationConfigReader.getApi3Url(),data);
+                    break;
                 default:
                     apiOut = "Either data is incorrect or api call feature collection is invalid";
                     break;
@@ -98,10 +100,14 @@ public class MessageListener {
     public void receiveMessageFromOutputQueue(final UserInput data) {
         log.info("Received message: {} from Output queue.", data);
         try {
+            //logic to upload to mongodb rest service
+            if(data.getModel().equals("SentimentalAnalysis"))
+            {
+                ApiRunner.analyticsApi(applicationConfigReader.getAnalyticsUrl(),data.getResult());
+            }
             log.info("Sending an email to user");
             // send a simple mail
             String subject = "Ticket Id#" + data.getTicketId() + "- ML based SOA run completed!";
-
             // content should have three keys. one of the key will be image base64 format. pass that to content which can then be displayed in image
             // https://www.thymeleaf.org/doc/articles/springmail.html
             String content = data.getResult();

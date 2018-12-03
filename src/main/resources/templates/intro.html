@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="../../css/styles.css" />
+    <script type="text/javascript">
+
+        function checkForm(form)
+        {
+            if(!form.terms.checked) {
+            alert("Please indicate that you accept the Terms and Conditions");
+            form.terms.focus();
+            return false;
+        }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+<header>
+    <h2>SOA based Machine Learning</h2>
+</header>
+
+<section>
+    <article>
+        <h1>Welcome to the home page of SOA based Machine learning</h1>
+        <p>Follow this steps for data processing. Once you complete as mentioned below, check agree to proceed and click next</p>
+        <div>
+            <h3>Steps for text processing</h3>
+            <p> content here</p>
+        </div>
+        <div>
+            <h3>Steps for Image processing</h3>
+            <p> content here</p>
+        </div>
+        <div>
+            <h3>Steps for Linear Regression</h3>
+            <p> content here</p>
+        </div>
+        <div class="form_container" onsubmit="return checkForm(this);">
+            <form id="myform" onsubmit="return handle_form_submission()" method="POST" action="/intro">
+                <p><input type="checkbox" name="terms"> I accept the <u>Terms and Conditions</u></p>
+                <p><input type="submit" value="Next >>"></p>
+            </form>
+        </div>
+    </article>
+    <div>
+
+    </div>
+</section>
+
+<footer>
+    <p>By Amruthaa Rajan</p>
+</footer>
+</body>
+</html>

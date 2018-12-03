@@ -3,14 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="c5832fbe-4a0b-49b7-af9c-3922e046ff8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/amruthaa/MailSenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/amruthaa/MailSenderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/amruthaa/MlApiRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/amruthaa/MlApiRunner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/amruthaa/MessageQueue/MessageListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/amruthaa/MessageQueue/MessageListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/amruthaa/MlApiRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/amruthaa/configuration/ApplicationConfigReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/amruthaa/configuration/ApplicationConfigReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/amruthaa/controller/UploadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/amruthaa/controller/UploadController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/emailResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/emailResult.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/amruthaa/MailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/amruthaa/MailSenderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/amruthaa/MlApiRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/amruthaa/MlApiRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/upload.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/templates/uploadStatus.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/amruthaa/MessageQueue/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/amruthaa/MessageQueue/MessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/amruthaa/MlApiRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/amruthaa/ApiRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/amruthaa/configuration/ApplicationConfigReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/amruthaa/configuration/ApplicationConfigReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/amruthaa/controller/UploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/amruthaa/controller/UploadController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/emailResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/emailResult.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/uploadStatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/confirmation.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -71,12 +79,14 @@
     <session id="48876114">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
+          <entry key="project.closed" value="26" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.18" value="2" />
           <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="2" />
           <entry key="project.open.time.22" value="1" />
@@ -84,127 +94,74 @@
           <entry key="project.open.time.26" value="3" />
           <entry key="project.open.time.27" value="2" />
           <entry key="project.open.time.38" value="1" />
-          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.4" value="3" />
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="21" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="6" />
+          <entry key="css" value="7" />
           <entry key="gradle" value="6" />
-          <entry key="html" value="26" />
-          <entry key="java" value="94" />
+          <entry key="html" value="31" />
+          <entry key="java" value="103" />
           <entry key="jsp" value="2" />
           <entry key="properties" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="6" />
+          <entry key="CSS" value="7" />
           <entry key="Groovy" value="6" />
-          <entry key="HTML" value="26" />
-          <entry key="JAVA" value="94" />
+          <entry key="HTML" value="31" />
+          <entry key="JAVA" value="103" />
           <entry key="JSP" value="2" />
           <entry key="Properties" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="2" />
+          <entry key="css" value="39" />
           <entry key="dummy" value="7" />
           <entry key="gradle" value="67" />
-          <entry key="html" value="882" />
-          <entry key="java" value="4496" />
-          <entry key="properties" value="669" />
+          <entry key="html" value="1613" />
+          <entry key="java" value="4941" />
+          <entry key="properties" value="736" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="2" />
+          <entry key="CSS" value="39" />
           <entry key="Groovy" value="67" />
-          <entry key="HTML" value="882" />
-          <entry key="JAVA" value="4496" />
+          <entry key="HTML" value="1613" />
+          <entry key="JAVA" value="4941" />
           <entry key="PLAIN_TEXT" value="7" />
-          <entry key="Properties" value="669" />
+          <entry key="Properties" value="736" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+            <state relative-caret-position="245">
+              <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/MailSenderService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/configuration/ApplicationConfigReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/models/SimpleMail.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/MessageQueue/MessageListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="107" selection-start-line="107" selection-end-line="107" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/MlApiRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="55" column="82" lean-forward="true" selection-start-line="55" selection-start-column="82" selection-end-line="55" selection-end-column="82" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/models/UserInput.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/emailResult.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="129" selection-start-line="14" selection-start-column="129" selection-end-line="14" selection-end-column="129" />
+            <state relative-caret-position="105">
+              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -214,8 +171,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -225,6 +182,8 @@
       <find>sendMessage</find>
       <find>OUT_QUEUE</find>
       <find>app2</find>
+      <find>encoded</find>
+      <find>container</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -686,17 +645,22 @@
         <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/models/UserInput.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/styles.css" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/configuration/ApplicationConfigReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/controller/UploadController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/result.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/models/SimpleMail.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/uploadStatus.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/upload.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/MessageQueue/MessageListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/MlApiRunner.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/emailResult.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/MailSenderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/ApiRunner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/MessageQueue/MessageListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/configuration/ApplicationConfigReader.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/upload.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/styles.css" />
+        <option value="$PROJECT_DIR$/src/main/java/com/amruthaa/controller/UploadController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/intro.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/emailResult.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/confirmation.html" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
@@ -708,10 +672,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="212" />
-    <option name="y" value="204" />
-    <option name="width" value="1321" />
-    <option name="height" value="696" />
+    <option name="width" value="1853" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -721,8 +683,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -763,6 +723,15 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="amruthaa" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="capstone-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="capstone-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="amruthaa" type="462c0819:PsiDirectoryNode" />
               <item name="MessageQueue" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -787,12 +756,31 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="capstone-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="capstone-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="capstone-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="capstone-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -802,7 +790,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542606186576" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543803206840" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Project" />
@@ -879,12 +867,22 @@
       <workItem from="1540707792965" duration="10033000" />
       <workItem from="1541965801535" duration="16515000" />
       <workItem from="1541995429116" duration="3539000" />
-      <workItem from="1542589408061" duration="13789000" />
+      <workItem from="1542589408061" duration="13970000" />
+      <workItem from="1542780984840" duration="927000" />
+      <workItem from="1542782044917" duration="750000" />
+      <workItem from="1542785060182" duration="4074000" />
+      <workItem from="1542796937415" duration="656000" />
+      <workItem from="1542830296174" duration="1252000" />
+      <workItem from="1543459315027" duration="932000" />
+      <workItem from="1543543498257" duration="6317000" />
+      <workItem from="1543735014779" duration="916000" />
+      <workItem from="1543789139116" duration="1743000" />
+      <workItem from="1543796815804" duration="6264000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98674000" />
+    <option name="totallyTimeSpent" value="122686000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -899,7 +897,7 @@
     <frame x="0" y="0" width="1853" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30271167" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21914776" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -908,15 +906,15 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3294979" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32878152" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.38655463" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32878152" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.38340336" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.49395972" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32977304" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.22584033" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.36869746" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.36680055" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
@@ -948,7 +946,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/amruthaa/MessageQueue/MessageListener.java</url>
-          <line>107</line>
+          <line>113</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
@@ -986,23 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/configuration/ApplicationConfigReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-          <folding>
-            <element signature="e#363#392#1" expanded="true" />
-            <element signature="e#433#459#1" expanded="true" />
-            <element signature="e#503#530#1" expanded="true" />
-            <element signature="e#567#597#1" expanded="true" />
-            <element signature="e#637#664#1" expanded="true" />
-            <element signature="e#708#736#1" expanded="true" />
-            <element signature="e#965#978#1" expanded="true" />
-            <element signature="e#1020#1033#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/chooseFeature.html" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/css/styles.css" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/MessageQueue/MessageSender.java">
@@ -1023,12 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding>
-            <element signature="e#1768#1769#0" expanded="true" />
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#3117#3118#0" expanded="true" />
-            <element signature="e#3173#3174#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1039,38 +1014,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/uploadStatus.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/MailSenderService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-416">
-          <caret line="56" selection-start-line="56" selection-end-line="58" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/controller/UploadController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="32" column="81" lean-forward="true" selection-start-line="32" selection-start-column="81" selection-end-line="32" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/upload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="93" selection-start-line="31" selection-start-column="93" selection-end-line="31" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/models/UserInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        <state relative-caret-position="330">
+          <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1079,8 +1026,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/MessageQueue/MessageListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        <state relative-caret-position="45">
+          <caret line="83" column="20" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/ApiRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="58" column="55" selection-start-line="58" selection-start-column="55" selection-end-line="58" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1094,37 +1048,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/models/UserInput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/MailSenderService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
+        <state relative-caret-position="195">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/MlApiRunner.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/models/Sentiment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="55" column="82" lean-forward="true" selection-start-line="55" selection-start-column="82" selection-end-line="55" selection-end-column="82" />
+        <state relative-caret-position="30">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/controller/UploadController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="41" column="14" lean-forward="true" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2125#2126#0" expanded="true" />
+            <element signature="e#2162#2163#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/emailResult.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="129" selection-start-line="14" selection-start-column="129" selection-end-line="14" selection-end-column="129" />
+        <state relative-caret-position="315">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/confirmation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="38" lean-forward="true" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/intro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="19" selection-start-line="19" selection-end-line="21" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/amruthaa/configuration/ApplicationConfigReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
         </state>
       </provider>
     </entry>

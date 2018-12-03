@@ -45,17 +45,25 @@ public class UploadController {
     }
 
     @RequestMapping("/")
-    public String index() { return "upload"; }
+    public String index() { return "intro"; }
 
-    @PostMapping("/upload") // //new annotation since 4.3
+    @RequestMapping("/intro")
+    public String intro(@RequestParam(value = "terms", defaultValue = "off") String terms) {
+        if (terms.equals("on")) {
+            return "home";
+        }
+        return "intro";
+    }
+
+    @PostMapping("/home") // //new annotation since 4.3
     public String singleFileUpload(@RequestParam("model") String model, @RequestParam("email") String email, @RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
         return doAnalysis(model,email,file,redirectAttributes);
     }
 
-    @GetMapping("/uploadStatus")
-    public String uploadStatus() {
-        return "uploadStatus";
+    @GetMapping("/confirmation")
+    public String confirmation() {
+        return "confirmation";
     }
 
     private String doAnalysis(String model, String email,MultipartFile file, RedirectAttributes redirectAttributes)
@@ -86,6 +94,6 @@ public class UploadController {
             log.error("Exception occurred while sending message to the queue. Exception= {}", ex);
         }
 
-        return "redirect:/uploadStatus";
+        return "redirect:/confirmation";
     }
 }

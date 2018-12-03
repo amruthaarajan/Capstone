@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public final class MlApiRunner {
+public final class ApiRunner {
 
     public static String sentimentalAnalysisApi(String urlString, UserInput data) throws Exception {
         byte[] encoded = Files.readAllBytes(Paths.get(data.getDataUrl()));
@@ -40,13 +40,13 @@ public final class MlApiRunner {
         return response.toString();
     }
 
-    public static String imageClassificationApi(String urlString, UserInput data) throws Exception {
+    public static String imageClassificationLinearRegressionApi(String urlString, UserInput data) throws Exception {
         StringBuilder url = new StringBuilder(urlString);
         URL obj = new URL(url.toString());
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", "Server:API");
-        con.setRequestProperty("Content-Type","application/json");
+        con.setRequestProperty("Content-Type", "application/json");
         con.setDoOutput(true);
         Gson gson = new Gson();
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -71,5 +71,32 @@ public final class MlApiRunner {
         outputStream.close();
         inputStream.close();
         return saveFilePath;
+    }
+
+    public static String analyticsApi(String urlString, String data) throws Exception {
+        StringBuilder url = new StringBuilder(urlString);
+        URL obj = new URL(url.toString());
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", "Server:API");
+        con.setRequestProperty("Content-Type","application/json");
+        con.setDoOutput(true);
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        wr.writeBytes(data);
+        wr.flush();
+        wr.close();
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'POST' request to URL : " + url.toString());
+        System.out.println("Response Code : " + responseCode);
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuilder response;
+        response = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        return response.toString();
     }
 }
