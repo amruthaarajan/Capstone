@@ -2,6 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="../../css/styles.css" />
+    <script type="text/javascript">
+        var changeFileTypes = function (elem)
+        {
+            fileTypes = '.txt';
+            if(elem.value === 'ImageClassification'){
+                fileTypes = '.jpeg,.jpg,.png';
+            } else if(elem.value  === 'LinearRegression'){
+                fileTypes = '.csv';
+            }
+            else
+            {
+                fileTypes = '.txt';
+            }
+            document.getElementsByName("file")[0].setAttribute("accept", fileTypes);
+        };
+    </script>
 </head>
 <body>
 <header>
@@ -21,7 +37,7 @@
 
                 <p>
                     <label for="model">Select a model to run
-                        <select name="model">
+                        <select name="model" onchange="changeFileTypes(this)">
                             <option value="SentimentalAnalysis">Sentimental Analysis</option>
                             <option value="ImageClassification">Image Classification</option>
                             <option value="LinearRegression">Linear Regression</option>
@@ -31,7 +47,7 @@
 
                 <p>
                     <label for="file">Upload data(text file for sentiment analysis and image file for image processing)
-                        <input type="file" name="file" accept=".png,.jpeg,.jpg,.txt,.csv" required/>
+                        <input type="file" name="file" accept=".txt" required/>
                     </label>
                 </p>
 

@@ -24,21 +24,23 @@
 <section>
     <article>
         <h1>Welcome to the home page of SOA based Machine learning</h1>
-        <p>Follow this steps for data processing. Once you complete as mentioned below, check agree to proceed and click next</p>
+        <p>Please read through to these terms and conditions before proceeding</p>
+        <h2> Data Processing steps</h2>
+        <p>
+            1. For text processing, please upload only files that are of ".txt" format. Do not upload files of formats other than the mentioned. For better results, do not upload any text files consisting of gibberish data. <br/>
+            2. For Image processing, please upload only files that are of ".png", ".jpeg" or ".jpg" format. Do not upload files of formats other than the mentioned. For better results, do not upload any image files of categories other than 1000 mentioned categories. <br/>
+            3. For Linear Regression, please upload only files that are of ".csv" format. Do not upload files of formats other than the mentioned. The model uses the last column of the uploaded data as target class and the remaining columns as dependent variables or features. So make sure your target class is at the last column. Please clean the data and handle missing or null values before uploading. This model is suitable for supervised data only. <br/>
+        </p>
+
+        <h2> Terms and Conditions</h2>
         <div>
-            <h3>Steps for text processing</h3>
-            <p> content here</p>
+            <p>1. I will upload the respective format for respective machine learning algorithms<br/>
+                2. The underlying algorithms may take time to process. I agree to wait for a few minutes before getting the results. <br/>
+            3. I agree on using my data for analytics purposes.
+            </p>
         </div>
-        <div>
-            <h3>Steps for Image processing</h3>
-            <p> content here</p>
-        </div>
-        <div>
-            <h3>Steps for Linear Regression</h3>
-            <p> content here</p>
-        </div>
-        <div class="form_container" onsubmit="return checkForm(this);">
-            <form id="myform" onsubmit="return handle_form_submission()" method="POST" action="/intro">
+        <div class="form_container">
+            <form id="myform" onsubmit="return checkForm(this);" method="POST" action="/intro">
                 <p><input type="checkbox" name="terms"> I accept the <u>Terms and Conditions</u></p>
                 <p><input type="submit" value="Next >>"></p>
             </form>
