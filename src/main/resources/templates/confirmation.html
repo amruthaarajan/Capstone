@@ -2,6 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="../../css/styles.css" />
+    <script type="text/javascript">
+        var GoToHomePage = function ()
+        {
+            window.location = '/';
+        };
+    </script>
 </head>
 <body>
 <header>
@@ -12,6 +18,10 @@
     <article>
         <div th:if="${message}">
             <h2 th:text="${message}"/>
+        </div>
+        <div>
+            <p>Click here to go to <a onclick="javascript:GoToHomePage()" href="javascript:void(0)">Home page</a>
+            </p>
         </div>
     </article>
 </section>
